@@ -19,11 +19,20 @@ class HomeViewModel : ViewModel() {
 
     var listCharacter : ArrayList<DataCharacterItem> = arrayListOf()
 
-    fun getDataFromAPI(recyclerView: RecyclerView){
+    interface onClickListener{
+        fun onClick(character : DataCharacterItem)
+    }
+
+    fun getDataFromAPI(recyclerView: RecyclerView, listener: onClickListener){
         RetrofitForClient.instance.getDataCharacters().enqueue(object: Callback<DataCharacter>{
             override fun onResponse(call: Call<DataCharacter>, response: Response<DataCharacter>) {
                 val data = response.body()
-                recyclerView.adapter = HomeAdapter(data as ArrayList<DataCharacterItem>)
+                recyclerView.adapter = HomeAdapter(data as ArrayList<DataCharacterItem>, object : HomeAdapter.OnItemClickListener{
+                    override fun onClick(character: DataCharacterItem) {
+                        listener.onClick(character)
+                    }
+
+                })
             }
 
             override fun onFailure(call: Call<DataCharacter>, t: Throwable) {
