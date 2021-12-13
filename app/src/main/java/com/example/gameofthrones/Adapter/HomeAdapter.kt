@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gameofthrones.DataCharacterItem
 import com.example.gameofthrones.R
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.home_itemlist.view.*
 
 class HomeAdapter(private val listCharacter : ArrayList<DataCharacterItem>) : RecyclerView.Adapter<HomeAdapter.Homeholder>() {
@@ -13,8 +14,11 @@ class HomeAdapter(private val listCharacter : ArrayList<DataCharacterItem>) : Re
     class Homeholder(itemview: View) : RecyclerView.ViewHolder(itemview){
         fun bind(character : DataCharacterItem){
             with(itemView){
+                Picasso.get()
+                    .load(character.imageUrl)
+                    .into(character_img)
                 namatv.text = character.fullName
-                familytv.text = character.family
+                familytv.text = "Family: " + character.family
             }
         }
     }
