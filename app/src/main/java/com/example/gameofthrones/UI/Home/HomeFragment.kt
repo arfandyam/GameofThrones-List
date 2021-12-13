@@ -6,9 +6,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.gameofthrones.Adapter.HomeAdapter
+import com.example.gameofthrones.DataCharacterItem
+import com.example.gameofthrones.Detaildata.DataStatis
 import com.example.gameofthrones.R
+import com.example.gameofthrones.UI.Home.Detail.DetailCharacterFragment
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
@@ -36,7 +43,17 @@ class HomeFragment : Fragment() {
 
         recyclerview_home.setHasFixedSize(true)
         recyclerview_home.layoutManager = LinearLayoutManager(context)
-        viewModel.getDataFromAPI(recyclerview_home)
+        viewModel.getDataFromAPI(recyclerview_home, object : HomeViewModel.onClickListener{
+            override fun onClick(character: DataCharacterItem) {
+                DataStatis.fill(character)
+                val fragment: Fragment = DetailCharacterFragment()
+                val fragmentManager: FragmentManager = activity!!.supportFragmentManager
+                val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+                fragmentTransaction.replace(R.id.container_fragment, fragment)
+                fragmentTransaction.addToBackStack(null)
+                fragmentTransaction.commit()
+            }
+        })
     }
 
     override fun onDestroy() {
