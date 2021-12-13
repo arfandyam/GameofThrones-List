@@ -1,5 +1,6 @@
 package com.example.gameofthrones.UI.Home.Detail
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -32,6 +33,20 @@ class DetailCharacterFragment : Fragment() {
         character_family.text = DataStatis.family
         character_title.text = DataStatis.title
         character_img_name.text = DataStatis.image
+
+        button_share.setOnClickListener {
+            val fullname = DataStatis.fullName
+            val family = DataStatis.family
+            val title = DataStatis.title
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, "Nama Karakter : $fullname \nFamily : $family\nTitle : $title")
+                type = "text/plain"
+            }
+
+            val shareIntent = Intent.createChooser(sendIntent, null)
+            startActivity(shareIntent)
+        }
     }
 
     companion object {
