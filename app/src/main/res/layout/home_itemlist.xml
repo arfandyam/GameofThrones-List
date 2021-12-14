@@ -1,56 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="5dp"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="true">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:padding="10dp">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            app:cardCornerRadius="16dp"
-            android:layout_margin="8dp">
+        <ImageView
+            android:id="@+id/character_img"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/black"/>
 
-            <ImageView
-                android:id="@+id/character_img"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:background="@color/black"/>
+        <TextView
+            android:id="@+id/namatv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Daenerys Targaryen"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="8dp"
+            android:layout_below="@+id/character_img"/>
+        <TextView
+            android:id="@+id/familytv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="House Targaryen"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="8dp"
+            android:layout_below="@+id/namatv"/>
 
-        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            android:layout_margin="5dp"
 
-            <TextView
-                android:id="@+id/namatv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Daenerys Targaryen"
-                android:textColor="@color/black"
-                android:layout_marginTop="8dp"
-                android:textSize="18dp" />
 
-            <TextView
-                android:id="@+id/familytv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Family : House Targaryen"
-                android:textColor="@color/black"
-                android:layout_marginTop="10dp"
 
-                android:textSize="15dp" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-</LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gameofthrones.Adapter.HomeAdapter
 import com.example.gameofthrones.DataCharacterItem
@@ -42,7 +43,7 @@ class HomeFragment : Fragment() {
         Log.d("HomeFragment", "onViewCreated Called")
 
         recyclerview_home.setHasFixedSize(true)
-        recyclerview_home.layoutManager = LinearLayoutManager(context)
+        recyclerview_home.layoutManager = GridLayoutManager(context, 2, LinearLayoutManager.VERTICAL, false)
         viewModel.getDataFromAPI(recyclerview_home, object : HomeViewModel.onClickListener{
             override fun onClick(character: DataCharacterItem) {
                 DataStatis.fill(character)
