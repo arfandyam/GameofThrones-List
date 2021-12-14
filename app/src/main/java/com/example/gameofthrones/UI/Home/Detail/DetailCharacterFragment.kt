@@ -27,12 +27,12 @@ class DetailCharacterFragment : Fragment() {
         Picasso.get()
             .load(DataStatis.imageUrl)
             .into(character_detail_img)
-        character_firstname.text = DataStatis.firstName
-        character_lastname.text = DataStatis.lastName
-        character_fullname.text = DataStatis.fullName
-        character_family.text = DataStatis.family
-        character_title.text = DataStatis.title
-        character_img_name.text = DataStatis.image
+        character_firstname.text = "First Name : " + DataStatis.firstName
+        character_lastname.text = "Last Name : " + DataStatis.lastName
+        character_fullname.text = "Full Name : " + DataStatis.fullName
+        character_family.text = "Family : " + DataStatis.family
+        character_title.text = "Title : " + DataStatis.title
+        character_img_name.text = "Image Name : " + DataStatis.image
 
         button_share.setOnClickListener {
             val fullname = DataStatis.fullName
